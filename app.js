@@ -16,8 +16,15 @@ const notes = require('./notes');
 yargs.command({  // configuration object
     command:'remove',
     decribe:'Removes a Note!',
-    handler:function () {
-        console.log('The selected note is removed successfully');
+    handler:function (argv) {
+        notes.removeNote(argv.title)
+    },
+    builder:{  // to add options to remove argument
+        title:{
+            describe: 'Add the title of the note to be deleted',
+            demandOption: true,
+            type: 'string'
+        }
     }
 });
 

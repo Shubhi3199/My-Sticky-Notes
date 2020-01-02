@@ -1,8 +1,10 @@
 const fs = require('fs');
+const chalk = require('chalk');
 
 const getNotes = () =>{
     return 'YOur notes...';
 };
+
 const addNotes = ( title, body ) =>{
     const notes = loadNotes();
     const duplicateNotes = notes.filter( (note) =>{
@@ -21,6 +23,23 @@ const addNotes = ( title, body ) =>{
     }
 };
 
+const removeNote = (title) =>{
+    const notes = loadNotes();
+
+    const newNotes = notes.filter( (note) =>{
+        return note.title !== title;
+    });
+    saveNotes(newNotes);
+    if(notes.length !== newNotes.length){
+        console.log(chalk`{keyword('green') ${title} removed successfully}`)
+    }else{
+        console.log(chalk`{keyword('red') No note found!}`)
+    }
+
+};
+
+// loadNotes() and saveNotes() are my utility functions that are frequently used up by my main functions.
+
 const loadNotes = () => {
     try {
         const dataBuffer = fs.readFileSync('notes.json');
@@ -37,6 +56,7 @@ const saveNotes = (notes) =>{   // receives the notes array and writes it into f
 };
 module.exports = {
     getNotes,
-    addNotes
+    addNotes,
+    removeNote
 };
 
