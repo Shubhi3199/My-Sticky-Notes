@@ -55,8 +55,15 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler: function () {
-        console.log("THis is a placeholder to read a node");
+    builder: {
+        title: {
+            describe: 'Add title to read a note',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function (argv) {
+        notes.readNote(argv.title);
     }
 });
 
