@@ -7,10 +7,11 @@ const getNotes = () =>{
 
 const addNotes = ( title, body ) =>{
     const notes = loadNotes();
-    const duplicateNotes = notes.filter( (note) =>{
-        return note.title === title;
-    });
-    if(duplicateNotes.length === 0){
+    // const duplicateNotes = notes.filter( (note) =>{  find() is used here over filter as find() stops looking when it finds any one element satisfying the given condition
+    //     return note.title === title;
+    // });
+    const duplicateNote = notes.find( (note) => note.title === title);
+    if(!duplicateNote){
         notes.push({
             title: title,
             body: body
