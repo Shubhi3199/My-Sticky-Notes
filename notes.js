@@ -38,6 +38,15 @@ const removeNote = (title) =>{
 
 };
 
+const listNotes = () =>{
+    const notes = loadNotes();
+    console.log(chalk`{inverse.green Your Notes :-}`);
+    notes.forEach( ( note, index ) =>{
+        console.log(chalk`{keyword('orange') ${index} :} ${note.title}`);
+    })
+};
+
+
 // loadNotes() and saveNotes() are my utility functions that are frequently used up by my main functions.
 
 const loadNotes = () => {
@@ -57,6 +66,7 @@ const saveNotes = (notes) =>{   // receives the notes array and writes it into f
 module.exports = {
     getNotes,
     addNotes,
-    removeNote
+    removeNote,
+    listNotes
 };
 

@@ -65,7 +65,7 @@ yargs.command({
     command: 'list',
     describe: 'List all the notes',
     handler: function () {
-        console.log("THis is a placeholder listing all the notes");
+        notes.listNotes();
     }
 });
 
